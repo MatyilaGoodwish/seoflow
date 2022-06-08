@@ -1,4 +1,3 @@
-import { AppComponent } from "./AppComponent/AppComponent.js";
 import { MenuComponent } from "./MenuComponent/MenuComponent.js";
 
 /**
@@ -6,7 +5,7 @@ import { MenuComponent } from "./MenuComponent/MenuComponent.js";
  * This utility is strictly developed for SEO professionals
  * @const seoFlow angular module
  */
-const seoFlow = angular.module('seo.flow', ['ngRoute'])
+const seoFlow = angular.module('seo.flow', ['ngRoute']);
 
 /**
  * @var default_route home default route
@@ -25,8 +24,7 @@ seoFlow.config(function($routeProvider, $locationProvider){
     /**
      * configure routes by components
      */
-    $routeProvider.when('/home', { template:"<app-component></app-component>" })
-    $routeProvider.when('/menu', { template:"<menu-component></menu-component>" })
+    $routeProvider.when('/menu', { template: "<menu-component></menu-component>" });
 })
 
 /**
@@ -38,7 +36,6 @@ seoFlow.config(function($routeProvider, $locationProvider){
 const componentInit = seoFlow;
 
 //init the components
-componentInit.component('appComponent', new AppComponent() );
 componentInit.component('menuComponent', new MenuComponent() );
 
 
