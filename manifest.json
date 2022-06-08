@@ -3,11 +3,7 @@
     "description" : "Ultimate toolkit for SEO Enthusiasts and Content managers",
     "version": "0.0.1",
     "manifest_version": 3,
-    "permissions": [
-        "storage",
-        "scripting",
-        "activeTab"
-    ],
+    "permissions": [],
     "background": {
         "service_worker": "background.js"
     },
