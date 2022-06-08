@@ -37,6 +37,7 @@ seoFlow.config(function($routeProvider, $locationProvider){
  */
 const componentInit = seoFlow;
 
+//init the components
 componentInit.component('appComponent', new AppComponent() );
 componentInit.component('menuComponent', new MenuComponent() );
 
