@@ -1,29 +1,26 @@
 {
     "name": "SEO Flow",
-    "description" : "Ultimate toolkit for SEO Enthusiasts and Content managers",
-    "version": "0.0.5",
+    "description": "Ultimate toolkit for SEO Enthusiasts and Content managers",
+    "version": "0.1.0",
     "manifest_version": 3,
-    "permissions": [],
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
     "background": {
         "service_worker": "background.js"
     },
+    "host_permissions": [ "<all_urls>" ],
     "action": {
-        "default_popup": "ui.html",
-        "default_icons": {
-            "16": "assets/icon/16x16.png",
-            "24": "assets/icon/24x24.png",
-            "32": "assets/icon/32x32.png",
-            "48": "assets/icon/48x48.png",
-            "64": "assets/icon/64x64.png",
-            "128": "assets/icon/128x128.png"
-        }
+        "default_title": "Analyse SEO on this page",
+        "default_icon": "images/icon.png"
     },
     "icons": {
-        "16": "assets/icon/16x16.png",
-        "24": "assets/icon/24x24.png",
-        "32": "assets/icon/32x32.png",
-        "48": "assets/icon/48x48.png",
-        "64": "assets/icon/64x64.png",
-        "128": "assets/icon/128x128.png"
+        "16": "images/icon.png",
+        "32": "images/icon.png",
+        "48": "images/icon.png",
+        "64": "images/icon.png",
+        "128": "images/icon.png"
     }
 }
