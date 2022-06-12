@@ -8,53 +8,72 @@
         <th></th>
         <th>Content</th>
         <th>Size</th>
-        
         <th>Recommendation</th>
     </thead>
-    <tbody>
-        <!-- Page title -->
-        <tr>
-            <td>Page title</td>
-            <td>{{title}}</td>
-            <td>{{title | count }}</td>
-            <td ng-class="(title|count) > 60  ? 'bg-danger': 'bg-success'">Most desktop and mobile browsers are able to display the first 50–60 characters of a title tag</td>
-        </tr>
+        <tbody>
+            <!-- Page title -->
+            <tr>
+                <td>Page title</td>
+                <td>{{title}}   <img src="images/r.png" ng-show="title|titleFilter" /> </td>
+                <td>{{title | count }}</td>
+                <td ng-class="(title|count) > 60  ? 'bg-danger': 'bg-success'">Most desktop and mobile browsers are able to display the first 50–60 characters of a title tag</td>
+            </tr>
 
-         <!-- Page Meta -->
-         <tr>
-            <td>Description</td>
-            <td>{{meta}}</td>
-            <td>{{meta | count }}</td>
-            <td ng-class="(meta|count) > 155 ? 'bg-danger': 'bg-success'">Meta descriptions can technically be any length, but Google generally truncates snippets to ~155-160 characters.</td>
-        </tr>
-         <!-- Page headline -->
-         <tr>
-            <td>Headline (H1)</td>
-            <td>{{h1}}</td>
-            <td>{{h1 | count }}</td>
-            <td ng-class="(h1|count) > 60 && (h1|count) < 40 ? 'bg-danger': 'bg-success'">Best practices say titles should be between 40 to 60 characters so you can fit in the most keywords.</td>
-        </tr>
-          <!-- Page subheader -->
-          <tr>
-            <td>Secondary (H2)</td>
-            <td>{{h2}}</td>
-            <td>{{h2 | count }}</td>
-            <td ng-class="(h2|count) > 60 ? 'bg-danger': 'bg-success'">We recommend sticking to a maximum length of 60 characters</td>
-        </tr>
+            <!-- Page Meta -->
+            <tr>
+                <td>Description</td>
+                <td>
+                    {{meta}} <img src="images/r.png" ng-show="meta|metaFilter" width="32" />
+                    <img src="images/x.png" ng-show="!h1|titleFilter" alt="image icon" width="32" />
+                </td>
+                <td>{{meta | count }}</td>
+                <td>Meta descriptions can technically be any length, but Google generally truncates snippets to ~155-160 characters.</td>
+            </tr>
+            <!-- Page headline -->
+            <tr>
+                <td>Headline (H1)</td>
+                <td>
+                    {{h1}}   <img src="images/r.png" width="32" ng-show="h1|titleFilter" />
+                    <img src="images/x.png" ng-show="!h1|titleFilter" alt="image icon" width="32" />
+                </td>
+                <td>{{h1 | count }}</td>
+                <td ng-class="(h1|count) > 60 && (h1|count) < 40 ? 'bg-danger': 'bg-success'">Best practices say titles should be between 40 to 60 characters so you can fit in the most keywords.</td>
+            </tr>
+            <!-- Page subheader -->
+            <tr>
+                <td>Secondary (H2)</td>
+                <td>{{h2}}  <img src="images/r.png" width="32" ng-show="h2|titleFilter" /> </td>
+                <td>{{h2 | count }}</td>
+                <td>We recommend sticking to a maximum length of 60 characters</td>
+            </tr>
 
-         <!-- Total h3 -->
-         <tr>
-            <td>Total (H3)</td>
-            <td class="bg-dark"></td>
-            <td>
-                <div class="row">
-                    <b>Total: {{h3}} </b>
-                </div>
-            </td>
-            <td></td>
-        </tr>
-        
-    </tbody>
+            <!-- Total h3 -->
+            <tr>
+                <td>Total (H3)</td>
+                <td class="bg-dark"></td>
+                <td>
+                    <div class="row">
+                        <b>Total: {{h3}} </b>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+
+            <!-- Total Test filter -->
+            <tr>
+                <td>Title Recommended</td>
+                <td class="bg-dark">
+                    {{h1}} 
+                </td>
+                <td>
+                    <img src="images/r.png" ng-show="h1|titleFilter" alt="image icon" width="32" />
+                    <img src="images/x.png" ng-show="!h1|titleFilter" alt="image icon" width="32" />
+                </td>
+                <td></td>
+            </tr>
+     
+
+        </tbody>
 </table>
 <div class="my-4">
     <div class="text-center align-center"><img src="images/icon.png" alt="logo seoflow" width="200"></div>

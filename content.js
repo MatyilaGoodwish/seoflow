@@ -30,7 +30,19 @@ class Page {
         if(!document.querySelector('h3')) {
             return '';
         }
-        return document.querySelectorAll('h3').length
+        if (typeof document.querySelectorAll('h3') === 'object') {
+            return document.querySelectorAll('h3').length;
+        }
+    }
+    static allLinks() {
+        if (typeof document.querySelectorAll('a') === 'object') {
+            return document.querySelectorAll('a');
+        }
+    }
+    static allImgs() {
+        if (typeof document.querySelectorAll('img') === 'object') {
+            return document.querySelectorAll('img');
+        }
     }
     
 }
@@ -52,8 +64,14 @@ var DataSource = {
     keywords: Page.keywords(),
     h1: Page.h1(),
     h2: Page.h2(),
-    h3: Page.h3()
+    h3: Page.h3(),
+    a: Page.allLinks(),
+    img: Page.allImgs()
 };
+
+Object.preventExtensions(DataSource);
+Object.seal(DataSource);
+Object.freeze(DataSource);
 
 chrome.storage.local.set({page: DataSource}, Service.notify); 
 
