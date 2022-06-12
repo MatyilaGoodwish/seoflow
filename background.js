@@ -10,13 +10,18 @@ chrome.runtime.onInstalled.addListener(()=> {
 //listens for a action click on the chrome bar
 chrome.action.onClicked.addListener((tab) => {
     //checks if tab url[] is not chrome extensions page or any google services
-    if ( !tab.url.includes("chrome://") ) {
-        //copies the content script to the running page
-        chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ['content.js']
-        });
-    }
+    if (tab.active == true) {
+        //construct new URL
+        currentUrl = new URL(tab.url);
+        //check the origin or the url
+        if (currentUrl.protocol !== "chrome:") {
+            //copies the content script to the running page
+            chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                files: ['content.js']
+            });
+        }
+    }   
 });
 
 chrome.runtime.onMessage.addListener((message, sender, postMessage) => {
