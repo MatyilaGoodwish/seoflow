@@ -1,0 +1,62 @@
+<section ng-controller="ViewController" class="card">
+    <article class="card-header">
+        <div class="h2">{{title}}</div>
+    </article>
+
+<table class="table">
+    <thead class="bg-secondary bg-shadow">
+        <th></th>
+        <th>Content</th>
+        <th>Size</th>
+        
+        <th>Recommendation</th>
+    </thead>
+    <tbody>
+        <!-- Page title -->
+        <tr>
+            <td>Page title</td>
+            <td>{{title}}</td>
+            <td>{{title | count }}</td>
+            <td ng-class="(title|count) > 60  ? 'bg-danger': 'bg-success'">Most desktop and mobile browsers are able to display the first 50–60 characters of a title tag</td>
+        </tr>
+
+         <!-- Page Meta -->
+         <tr>
+            <td>Description</td>
+            <td>{{meta}}</td>
+            <td>{{meta | count }}</td>
+            <td ng-class="(meta|count) > 155 ? 'bg-danger': 'bg-success'">Meta descriptions can technically be any length, but Google generally truncates snippets to ~155-160 characters.</td>
+        </tr>
+         <!-- Page headline -->
+         <tr>
+            <td>Headline (H1)</td>
+            <td>{{h1}}</td>
+            <td>{{h1 | count }}</td>
+            <td ng-class="(h1|count) > 60 && (h1|count) < 40 ? 'bg-danger': 'bg-success'">Best practices say titles should be between 40 to 60 characters so you can fit in the most keywords.</td>
+        </tr>
+          <!-- Page subheader -->
+          <tr>
+            <td>Secondary (H2)</td>
+            <td>{{h2}}</td>
+            <td>{{h2 | count }}</td>
+            <td ng-class="(h2|count) > 60 ? 'bg-danger': 'bg-success'">We recommend sticking to a maximum length of 60 characters</td>
+        </tr>
+
+         <!-- Total h3 -->
+         <tr>
+            <td>Total (H3)</td>
+            <td class="bg-dark"></td>
+            <td>
+                <div class="row">
+                    <b>Total: {{h3}} </b>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+        
+    </tbody>
+</table>
+<div class="my-4">
+    <div class="text-center align-center"><img src="images/icon.png" alt="logo seoflow" width="200"></div>
+</div>
+</section>

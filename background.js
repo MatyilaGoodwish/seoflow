@@ -1,16 +1,17 @@
-
-chrome.runtime.onInstalled.addListener((tabs)=> {
-    //onboarding load
+//prepares an event on the SW for Installed service
+chrome.runtime.onInstalled.addListener(()=> {
+    //prepares tab for onboarding the user to ask for permissions such as storage, activeTab, scripting
     chrome.tabs.create({
+        //onboarding page of the extension presented to the user
         url: 'onboarding.html'
     })
 })
 
-//inject custom content script
+//listens for a action click on the chrome bar
 chrome.action.onClicked.addListener((tab) => {
-    if (!tab.url.includes("chrome://")) {
-        //output tab url
-        console.log([tab.url])
+    //checks if tab url[] is not chrome extensions page or any google services
+    if ( !tab.url.includes("chrome://") ) {
+        //copies the content script to the running page
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
             files: ['content.js']
@@ -19,8 +20,12 @@ chrome.action.onClicked.addListener((tab) => {
 });
 
 chrome.runtime.onMessage.addListener((message, sender, postMessage) => {
-    if (message == "get-page") {
-        postMessage('done! page has been sent to you popup');
+    //verifies if the message is display-results
+    if (message == "display-results") {
+        //creates a seo results tab to display the analysis
+        chrome.tabs.create({
+            url: "seo.html"
+        })
     }
     return true;
 })
