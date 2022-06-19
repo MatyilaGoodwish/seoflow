@@ -9,6 +9,7 @@ chrome.runtime.onInstalled.addListener(()=> {
 
 //listens for a action click on the chrome bar
 chrome.action.onClicked.addListener((tab) => {
+
     //checks if tab url[] is not chrome extensions page or any google services
     if (tab.active == true) {
         //construct new URL
@@ -24,7 +25,10 @@ chrome.action.onClicked.addListener((tab) => {
     }   
 });
 
+ 
+
 chrome.runtime.onMessage.addListener((message, sender, postMessage) => {
+
     //verifies if the message is display-results
     if (message == "display-results") {
         //creates a seo results tab to display the analysis

@@ -1,52 +1,3 @@
-class Page { 
-    static title() { 
-        if(!document.querySelector('title')){
-            return ''
-        }
-        return document.querySelector('title').innerHTML;
-    }
-    static meta() { 
-        if(!document.querySelector('meta[name=description]')){
-            return ''
-        }
-        return document.querySelector('meta[name=description]').content
-    }
-    static keywords() {
-        return 'customers, business, luxuxy'
-    }
-    static h1() {
-        if(!document.querySelector('h1')) {
-            return '';
-        }
-        return document.querySelector('h1').innerHTML 
-    }
-    static h2() {
-        if(!document.querySelector('h2')) {
-            return '';
-        }
-        return document.querySelector('h2').innerHTML 
-    }
-    static h3() {
-        if(!document.querySelector('h3')) {
-            return '';
-        }
-        if (typeof document.querySelectorAll('h3') === 'object') {
-            return document.querySelectorAll('h3').length;
-        }
-    }
-    static allLinks() {
-        if (typeof document.querySelectorAll('a') === 'object') {
-            return document.querySelectorAll('a');
-        }
-    }
-    static allImgs() {
-        if (typeof document.querySelectorAll('img') === 'object') {
-            return document.querySelectorAll('img');
-        }
-    }
-    
-}
-
 class Service { 
     static notify() { 
         /**
@@ -58,15 +9,36 @@ class Service {
     }
 }
 
+/**
+ * @params { CSS Selector }
+ * @returns HTMLElment or object
+ * */
+function query(q) {
+    if (typeof document.querySelectorAll(q) !== undefined) {
+        //store the NodeList []
+        var tempNodeList = document.querySelectorAll(q);
+        if (tempNodeList.length > 0) {
+            return tempNodeList;
+        } else {
+            return [{
+                innerText: false,
+                innerHTML: false,
+                content: false
+            }]
+        }
+    }  
+}
+
+
 var DataSource = {
-    title: Page.title(),
-    meta: Page.meta(),
-    keywords: Page.keywords(),
-    h1: Page.h1(),
-    h2: Page.h2(),
-    h3: Page.h3(),
-    a: Page.allLinks(),
-    img: Page.allImgs()
+    title: query("*>title")[0].innerText,
+    description: query("*>meta[name=description]")[0].content,
+    keywords: query("*>meta[name=keywords]")[0].content,
+    h1: query("*>h1")[0].innerText,
+    h2: query("*>h2")[0].innerText,
+    h3: query("*>h3")[0].innerText,
+    h4: query("*>h4")[0].innerText,
+    url: location.origin
 };
 
 Object.preventExtensions(DataSource);

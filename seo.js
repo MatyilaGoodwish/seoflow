@@ -37,14 +37,20 @@ seo.controller('ViewController', function($scope) {
     async function getPageDetails() { 
         var DataSource = await chrome.storage.local.get('page');
         
-        //get the values from the data source 
-        var { title, meta, keywords, h1, h2, h3, allLinks, allImgs } = DataSource.page;
-        $scope.title = title;
-        $scope.meta = meta;
-        $scope.keywords = keywords;
-        $scope.h1 = h1;
-        $scope.h2 = h2;
-        $scope.h3 = h3;
+        /**
+         * p []
+         * img []
+         * keywords []
+         * */
+        var { title, description, keywords, h1, h2, h3, h4, img, p, url } = DataSource.page;
+        $scope.title = title ? title : false;
+        $scope.description = description ? description : false;
+        $scope.keywords = keywords ? keywords.split(',') : false;
+        $scope.h1 = h1 ? h1 : false;
+        $scope.h2 = h2 ? h2 : false;
+        $scope.h3 = h3 ? h3 : false,
+        $scope.url = url
+       
 
         //update scope
         $scope.$apply()
@@ -110,6 +116,24 @@ seo.filter('count', function(){
     }
 })
 
+//character counter filter
+seo.filter('countKeywords', function(){
+    return function(data){ 
+        let total = data.join(',').split(',');
+
+        return total.length;
+    }
+})
+
+//character counter filter
+seo.filter('commaJoin', function(){
+    return function(data){ 
+        if(typeof data === 'object'){ 
+            return data.join(',');
+        }
+    }
+})
+
 //filter title of the page 
 seo.filter('titleFilter', function () {
     return function (arg) {
@@ -124,6 +148,12 @@ seo.filter('metaFilter', function () {
     }
 });
 
-
+//is secured 
+seo.filter('isSecured', function(){
+    return function(args){ 
+        let url = new URL(args);
+        return url.protocol ==='https:' ? 'Yes - SSL Present' : 'Order SSL';
+    }
+})
 
 

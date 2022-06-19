@@ -3,82 +3,119 @@
         <div class="h2">{{title}}</div>
     </article>
 
-<table class="table">
-    <thead class="bg-secondary bg-shadow">
-        <th></th>
-        <th>Content</th>
-        <th>Size</th>
-        <th>Recommendation</th>
-    </thead>
+    <table class="table">
+        <tr class="bg-secondary bg-shadow">
+            <th></th>
+            <th>Content</th>
+            <th>Size</th>
+            <th>Recommendation</th>
+        </tr>
         <tbody>
             <!-- Page title -->
             <tr>
                 <td>Page title</td>
-                <td>{{title}}   <img src="images/r.png" ng-show="title|titleFilter"  width="32" /> </td>
-                <td>{{title | count }}</td>
-                <td ng-class="(title|count) > 60  ? 'bg-danger': 'bg-success'">Most desktop and mobile browsers are able to display the first 50–60 characters of a title tag</td>
+                <td>
+                    <div ng-show="title">{{title}}</div>
+                   
+                    <i class="bi bi-search text-success" ng-show="title.length < 61"></i>
+                </td>
+                <td><b>{{title | count }}</b></td>
+                <td>Most desktop and mobile browsers are able to display the first 50–60 characters of a title tag</td>
             </tr>
 
             <!-- Page Meta -->
             <tr>
                 <td>Description</td>
                 <td>
-                    {{meta}} <img src="images/r.png" ng-show="meta|metaFilter" width="32" />
-                    <img src="images/x.png" ng-show="!meta|titleFilter" alt="image icon" width="32" />
+                    <div ng-show="description">{{description}}</div> 
+                    <i class="bi bi-arrow-up-circle-fill text-success" ng-show="description.length < 155"></i>
                 </td>
-                <td>{{meta | count }}</td>
-                <td>Meta descriptions can technically be any length, but Google generally truncates snippets to ~155-160 characters.</td>
+                <td><b>{{description | count}}</b></td>
+                <td>Meta descriptions can technically be any length, but Google generally truncates snippets to ~155-160
+                    characters.</td>
             </tr>
             <!-- Page headline -->
             <tr>
-                <td>Headline (H1)</td>
+                <td>Headline (h1)</td>
                 <td>
-                    {{h1}}   <img src="images/r.png" width="32" ng-show="h1|titleFilter" />
-                    <img src="images/x.png" ng-show="!h1|titleFilter" alt="image icon" width="32" />
+                    <div ng-show="h1">{{h1}}</div>
+                
+                    <i class="bi bi-arrow-up-circle-fill text-success" ng-show="h1.length < 61"></i>
                 </td>
-                <td>{{h1 | count }}</td>
-                <td >Best practices say titles should be between 40 to 60 characters so you can fit in the most keywords.</td>
+                <td><b>{{h1 | count }}</b></td>
+                <td>Best practices say titles should be between 40 to 60 characters so you can fit in the most keywords.
+                </td>
             </tr>
             <!-- Page subheader -->
             <tr>
-                <td>Secondary (H2)</td>
+                <td>Secondary (h2)</td>
                 <td>
-                    {{h2}}  <img src="images/r.png" width="32" ng-show="h2|titleFilter" />
-                    <img src="images/x.png" width="32" ng-show="h2|titleFilter" />
+                   <div ng-show="h2"> {{h2}}</div>
+                    <i class="bi bi-arrow-down-circle-fill text-danger" ng-show="h2.length > 60"></i>
+                    <i class="bi bi-arrow-up-circle-fill text-success" ng-show="h2.length < 61"></i>
                 </td>
-                <td>{{h2 | count }}</td>
+                <td><b>{{h2 | count}}</b></td>
                 <td>We recommend sticking to a maximum length of 60 characters</td>
             </tr>
 
             <!-- Total h3 -->
             <tr>
-                <td>Total (H3)</td>
-                <td class="bg-dark"></td>
+                <td>Sectional (h3) - 1st</td>
+                <td>
+                    <div ng-show="h3">{{h3}}</div>
+                    
+                    <i class="bi bi-arrow-down-circle-fill text-danger" ng-show="h3.length > 60"></i>
+                    <i class="bi bi-arrow-up-circle-fill text-success" ng-show="h3.length < 61"></i>
+                </td>
                 <td>
                     <div class="row">
-                        <b>Total: {{h3}} </b>
+                        <b>{{h3 | count}} </b>
                     </div>
                 </td>
                 <td></td>
             </tr>
 
-            <!-- Total Test filter -->
-            <tr>
-                <td>Title Recommended</td>
-                <td class="bg-dark">
-                    {{h1}} 
+             <!-- Total h3 -->
+             <tr>
+                <td>Keywords</td>
+                <td>
+                    <div ng-show="keywords">{{keywords | commaJoin}}</div>
+
+                    <i class="bi bi-key text-success" ng-show="keywords"></i>
                 </td>
                 <td>
-                    <img src="images/r.png" ng-show="h1|titleFilter" alt="image icon" width="32" />
-                    <img src="images/x.png" ng-show="!h1|titleFilter" alt="image icon" width="32" />
+                    <div class="row">                       
+                    </div>
                 </td>
                 <td></td>
             </tr>
-     
+
+            <!-- URL Settings -->
+            <tr>
+                <td>Secured</td>
+                <td>
+                    <div ng-show="h3">{{url | isSecured}}</div>
+                    
+                    <i class="bi bi-arrow-down-circle-fill text-danger" ng-show="!h3"></i>
+                    <i class="bi bi-arrow-up-circle-fill text-success" ng-show="h3"></i>
+                </td>
+                <td>
+                    <div class="row">
+                        <b>N/A</b>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+
+
 
         </tbody>
-</table>
-<div class="my-4">
-    <div class="text-center align-center"><img src="images/icon.png" alt="logo seoflow" width="200"></div>
-</div>
+    </table>
+    <div class="my-4">
+        <div class="text-center align-center">
+            <img src="images/icon.png" alt="logo seoflow" width="200">
+            <p>Inspecting: {{url}}</p>
+        
+        </div>
+    </div>
 </section>
