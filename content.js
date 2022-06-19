@@ -4,7 +4,7 @@ class Service {
         * send message to the SW to display results
         */
         chrome.runtime.sendMessage('display-results', (response) => {
-         
+            //some actions
         })
     }
 }
